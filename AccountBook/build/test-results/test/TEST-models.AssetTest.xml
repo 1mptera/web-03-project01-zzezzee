@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="models.AssetTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-09-19T06:13:06" hostname="choejaewon-ui-MacBookPro.local" time="0.01">
+<testsuite name="models.AssetTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-09-19T07:11:18" hostname="choejaewon-ui-MacBookPro.local" time="0.007">
   <properties/>
-  <testcase name="bankBook()" classname="models.AssetTest" time="0.009"/>
-  <testcase name="amount()" classname="models.AssetTest" time="0.001"/>
+  <testcase name="bankBook()" classname="models.AssetTest" time="0.007"/>
+  <testcase name="amount()" classname="models.AssetTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

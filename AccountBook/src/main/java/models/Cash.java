@@ -11,7 +11,6 @@ public class Cash {
         return amount;
     }
 
-
     public void spend(int amount) {
         this.amount -= amount;
     }

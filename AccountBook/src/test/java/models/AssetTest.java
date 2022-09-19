@@ -38,5 +38,4 @@ class AssetTest {
 
         assertEquals(310000, asset.amount());
     }
-
 }
