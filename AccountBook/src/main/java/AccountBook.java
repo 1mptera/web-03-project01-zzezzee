@@ -1,13 +1,8 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.SystemColor;
 
 public class AccountBook {
     JFrame frame;
@@ -24,19 +19,28 @@ public class AccountBook {
 
     private void run() {
         frame = new JFrame();
+        frame.setBackground(SystemColor.activeCaption);
         frame.setBounds(100, 100, 800, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
+        assetPanel = new JPanel();
+        assetPanel.setBackground(SystemColor.activeCaption);
+        assetPanel.setBounds(0, 0, 800, 420);
+        frame.getContentPane().add(assetPanel);
+        assetPanel.setLayout(null);
+        assetPanel.setVisible(false);
+
         inputPanel = new JPanel();
-        inputPanel.setBounds(0, 0, 800, 400);
+        inputPanel.setBackground(SystemColor.activeCaption);
+        inputPanel.setBounds(0, 0, 800, 420);
         frame.getContentPane().add(inputPanel);
 
         JButton btnNewButton_4 = new JButton("InputPanel");
         inputPanel.add(btnNewButton_4);
 
         transactionPanel = new JPanel();
-        transactionPanel.setBounds(0, 0, 800, 400);
+        transactionPanel.setBounds(0, 0, 800, 420);
         frame.getContentPane().add(transactionPanel);
         transactionPanel.setLayout(null);
 
@@ -44,17 +48,8 @@ public class AccountBook {
         sdf.setBounds(0, 0, 117, 29);
         transactionPanel.add(sdf);
 
-        assetPanel = new JPanel();
-        assetPanel.setBounds(0, 0, 800, 400);
-        frame.getContentPane().add(assetPanel);
-        assetPanel.setLayout(null);
-
-        JButton btnNewButton = new JButton("AssetPanel");
-        btnNewButton.setBounds(153, 112, 220, 123);
-        assetPanel.add(btnNewButton);
-
         memoPanel = new JPanel();
-        memoPanel.setBounds(0, 0, 800, 400);
+        memoPanel.setBounds(0, 0, 800, 420);
         frame.getContentPane().add(memoPanel);
         memoPanel.setLayout(null);
 
@@ -69,7 +64,6 @@ public class AccountBook {
 
         inputPanel.setVisible(false);
         transactionPanel.setVisible(true);
-        assetPanel.setVisible(false);
         memoPanel.setVisible(false);
 
         JButton inputButton = new JButton("입력");
@@ -107,10 +101,10 @@ public class AccountBook {
 
         JButton memoButton = new JButton("메모");
         memoButton.addActionListener(event -> {
-                inputPanel.setVisible(false);
-                transactionPanel.setVisible(false);
-                assetPanel.setVisible(false);
-                memoPanel.setVisible(true);
+            inputPanel.setVisible(false);
+            transactionPanel.setVisible(false);
+            assetPanel.setVisible(false);
+            memoPanel.setVisible(true);
         });
 
         memoButton.setBounds(600, 423, 200, 50);
