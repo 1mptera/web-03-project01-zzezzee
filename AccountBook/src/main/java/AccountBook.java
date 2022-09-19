@@ -1,14 +1,9 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.SystemColor;
 
 public class AccountBook {
@@ -22,10 +17,11 @@ public class AccountBook {
     }
 
     private void run() {
+
+
         initFrame();
-
-
     }
+
 
     private void initFrame() {
         frame = new JFrame("AccountBook");
@@ -54,7 +50,6 @@ public class AccountBook {
         JPanel panel = new JPanel();
         panel.setBounds(0, 370, 600, 100);
         panel.setLayout(new GridLayout(1, 0));
-        panel.setBackground(Color.CYAN);
 
         panel.add(createInputButton());
         panel.add(createTransactionButton());
@@ -89,8 +84,8 @@ public class AccountBook {
     private JButton createAssetButton() {
         JButton AssetButton = new JButton("자산");
         AssetButton.addActionListener(event -> {
-            AssetPanel assetPanel = new AssetPanel();
-            updateContentPanel(assetPanel);
+//            AssetPanel assetPanel = new AssetPanel();
+//            updateContentPanel(assetPanel);
         });
         AssetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
