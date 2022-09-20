@@ -30,7 +30,7 @@ public class User {
     }
 
     public List<Card> card() {
-        return new ArrayList<>(cards);
+        return cards;
     }
 
     public int totalAccountAmount() {

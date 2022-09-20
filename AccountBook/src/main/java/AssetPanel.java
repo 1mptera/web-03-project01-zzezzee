@@ -78,15 +78,15 @@ public class AssetPanel extends JPanel {
         JPanel listPanel2 = new JPanel();
         listPanel2.setBounds(400, 150, 200, 130);
         listPanel2.setBackground(Color.ORANGE);
-        listPanel2.setLayout(new GridLayout(0, 1));
+        listPanel2.setLayout(new GridLayout(0, 2));
 
-        for (Account account : user.account()){
-            JLabel label = new JLabel(account.name() +" : " + account.amount());
+        for (Card card : user.card()){
+            JLabel label = new JLabel(card.name() +" : " + card.linkedAccount());
             listPanel2.add(label);
 
             JButton button = new JButton("x");
             button.addActionListener( event -> {
-                user.account().remove(account);
+                user.card().remove(card);
 
                 updateContentPanel();
             });
@@ -155,12 +155,15 @@ public class AssetPanel extends JPanel {
         assetInputPanel.setBackground(Color.ORANGE);
         assetInputPanel.setLayout(new GridLayout(0, 1));
 
-        JLabel label = new JLabel("통장 입력");
+        JLabel label = new JLabel("통장 이름");
         assetInputPanel.add(label);
 
         JTextField textField1 = new JTextField();
         textField1.setText("");
         assetInputPanel.add(textField1);
+
+        JLabel label2 = new JLabel("통장 잔액");
+        assetInputPanel.add(label2);
 
         JTextField textField2 = new JTextField();
         textField2.setText("");
@@ -186,12 +189,15 @@ public class AssetPanel extends JPanel {
         assetInputPanel.setBackground(Color.ORANGE);
         assetInputPanel.setLayout(new GridLayout(0, 1));
 
-        JLabel label = new JLabel("카드 입력");
+        JLabel label = new JLabel("카드 이름");
         assetInputPanel.add(label);
 
         JTextField textField1 = new JTextField();
         textField1.setText("");
         assetInputPanel.add(textField1);
+
+        JLabel label1 = new JLabel("연결 통장");
+        assetInputPanel.add(label1);
 
         JTextField textField2 = new JTextField();
         textField2.setText("");
@@ -226,26 +232,16 @@ public class AssetPanel extends JPanel {
 
     private JButton createCashButton() {
         JButton button = new JButton("현금");
-        button.addActionListener(event -> {
-
-
-        });
         return button;
     }
 
     private JButton createBankBookButton() {
         JButton button = new JButton("통장");
-        button.addActionListener(event -> {
-
-        });
         return button;
     }
 
     private JButton createCardButton() {
         JButton button = new JButton("카드");
-        button.addActionListener(event -> {
-
-        });
         return button;
     }
 
