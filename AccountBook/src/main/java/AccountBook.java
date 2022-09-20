@@ -1,3 +1,6 @@
+import models.Asset;
+import models.Cash;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,7 +12,8 @@ import java.awt.SystemColor;
 public class AccountBook {
     JFrame frame;
     private JPanel contentPanel;
-
+    private Asset asset;
+    private Cash cash;
 
     public static void main(String[] args) {
         AccountBook application = new AccountBook();
@@ -17,11 +21,15 @@ public class AccountBook {
     }
 
     private void run() {
-
+        initObject();
 
         initFrame();
     }
 
+    private void initObject() {
+        asset = new Asset();
+        cash = new Cash(0);
+    }
 
     private void initFrame() {
         frame = new JFrame("AccountBook");
@@ -29,7 +37,6 @@ public class AccountBook {
         frame.setBounds(100, 100, 600, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
-
 
         initConcentPanel();
         initButtonsPanel();
@@ -84,8 +91,8 @@ public class AccountBook {
     private JButton createAssetButton() {
         JButton AssetButton = new JButton("자산");
         AssetButton.addActionListener(event -> {
-//            AssetPanel assetPanel = new AssetPanel();
-//            updateContentPanel(assetPanel);
+            AssetPanel assetPanel = new AssetPanel(asset, cash);
+            updateContentPanel(assetPanel);
         });
         AssetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
@@ -98,6 +105,7 @@ public class AccountBook {
             MenuPanel menuPanel = new MenuPanel();
             updateContentPanel(menuPanel);
         });
+
         memoButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 
         return memoButton;

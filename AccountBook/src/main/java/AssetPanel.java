@@ -1,3 +1,8 @@
+import models.Asset;
+import models.BankBook;
+import models.Card;
+import models.Cash;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -51,8 +56,18 @@ public class AssetPanel extends JPanel {
         JPanel listPanel1 = new JPanel();
         listPanel1.setBounds(200, 150, 200, 130);
         listPanel1.setBackground(Color.ORANGE);
-        listPanel1.setLayout(new GridLayout(0, 1));
+        listPanel1.setLayout(new GridLayout(0, 2));
 
+        for (BankBook bankBook : asset.bankBook()) {
+            JLabel label = new JLabel(bankBook.name() + " :" + bankBook.amount());
+            JButton button = new JButton("x");
+            button.addActionListener( event -> {
+                asset.bankBook().remove(bankBook);
+                updateContentPanel();
+            });
+            listPanel1.add(label);
+            listPanel1.add(button);
+        }
 
         contentPanel.add(listPanel1);
     }
@@ -80,7 +95,7 @@ public class AssetPanel extends JPanel {
 
         statusPanel.add(new JLabel("통장: "));
         JTextField bankBookAsset = new JTextField(10);
-
+        bankBookAsset.setText(Integer.toString(asset.totalBankBookAmount()));
         totalAsset.setEditable(false);
 
         statusPanel.add(bankBookAsset);
@@ -127,15 +142,22 @@ public class AssetPanel extends JPanel {
         JLabel label = new JLabel("통장 입력");
         assetInputPanel.add(label);
 
-        JTextField name = new JTextField();
-        name.setText("통장 이름");
-        assetInputPanel.add(name);
+        JTextField textField1 = new JTextField();
+        textField1.setText("");
+        assetInputPanel.add(textField1);
 
-        JTextField amount = new JTextField();
-        amount.setText("통장 잔액");
-        assetInputPanel.add(amount);
+        JTextField textField2 = new JTextField();
+        textField2.setText("");
+        assetInputPanel.add(textField2);
 
         JButton saveButton = new JButton("저장");
+        saveButton.addActionListener( event -> {
+            String bankBookName = textField1.getText();
+            int bankBookAmount  = Integer.parseInt(textField2.getText());
+
+            asset.add(new BankBook(bankBookName, bankBookAmount));
+            updateContentPanel();
+        });
         assetInputPanel.add(saveButton);
 
         contentPanel.add(assetInputPanel);
@@ -150,10 +172,22 @@ public class AssetPanel extends JPanel {
         JLabel label = new JLabel("카드 입력");
         assetInputPanel.add(label);
 
-        JTextField textField = new JTextField();
-        assetInputPanel.add(textField);
+        JTextField textField1 = new JTextField();
+        textField1.setText("");
+        assetInputPanel.add(textField1);
+
+        JTextField textField2 = new JTextField();
+        textField2.setText("");
+        assetInputPanel.add(textField2);
 
         JButton saveButton = new JButton("저장");
+        saveButton.addActionListener( event -> {
+            String cardName = textField1.getText();
+            String bankBookName  = textField2.getText();
+
+            new Card(cardName, bankBookName, asset.bankBook());
+            updateContentPanel();
+        });
         assetInputPanel.add(saveButton);
 
         contentPanel.add(assetInputPanel);
