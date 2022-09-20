@@ -1,3 +1,5 @@
+import models.User;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +11,7 @@ import java.awt.SystemColor;
 public class AccountBook {
     JFrame frame;
     private JPanel contentPanel;
+    private User user;
 
 
     public static void main(String[] args) {
@@ -23,7 +26,7 @@ public class AccountBook {
     }
 
     private void initObject() {
-
+        user = new User();
     }
 
     private void initFrame() {
@@ -86,7 +89,7 @@ public class AccountBook {
     private JButton createAssetButton() {
         JButton AssetButton = new JButton("자산");
         AssetButton.addActionListener(event -> {
-            AssetPanel assetPanel = new AssetPanel();
+            AssetPanel assetPanel = new AssetPanel(user);
             updateContentPanel(assetPanel);
         });
         AssetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

@@ -1,3 +1,7 @@
+import models.Account;
+import models.Card;
+import models.User;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,10 +14,11 @@ import java.awt.SystemColor;
 public class AssetPanel extends JPanel {
     private JPanel contentPanel;
     private JPanel statusPanel;
+    private User user;
 
 
-    public AssetPanel() {
-
+    public AssetPanel(User user) {
+        this.user = user;
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -52,6 +57,19 @@ public class AssetPanel extends JPanel {
         listPanel1.setBackground(Color.ORANGE);
         listPanel1.setLayout(new GridLayout(0, 2));
 
+        for (Account account : user.account()){
+            JLabel label = new JLabel(account.name() +" : " + account.amount());
+            listPanel1.add(label);
+
+            JButton button = new JButton("x");
+            button.addActionListener( event -> {
+                user.account().remove(account);
+
+                updateContentPanel();
+            });
+            listPanel1.add(button);
+        }
+
         contentPanel.add(listPanel1);
     }
 
@@ -62,6 +80,18 @@ public class AssetPanel extends JPanel {
         listPanel2.setBackground(Color.ORANGE);
         listPanel2.setLayout(new GridLayout(0, 1));
 
+        for (Account account : user.account()){
+            JLabel label = new JLabel(account.name() +" : " + account.amount());
+            listPanel2.add(label);
+
+            JButton button = new JButton("x");
+            button.addActionListener( event -> {
+                user.account().remove(account);
+
+                updateContentPanel();
+            });
+            listPanel2.add(button);
+        }
 
         contentPanel.add(listPanel2);
     }
@@ -73,20 +103,21 @@ public class AssetPanel extends JPanel {
 
         statusPanel.add(new JLabel("총 자산: "));
         JTextField totalAsset = new JTextField(10);
+        totalAsset.setText(Integer.toString(user.cash() + user.totalAccountAmount()));
 
         totalAsset.setEditable(false);
         statusPanel.add(totalAsset);
 
         statusPanel.add(new JLabel("통장: "));
         JTextField bankBookAsset = new JTextField(10);
+        bankBookAsset.setText(Integer.toString(user.totalAccountAmount()));
 
         totalAsset.setEditable(false);
-
         statusPanel.add(bankBookAsset);
 
         statusPanel.add(new JLabel("현금: "));
         JTextField cashAsset = new JTextField(10);
-
+        cashAsset.setText(Integer.toString(user.cash()));
 
         totalAsset.setEditable(false);
         statusPanel.add(cashAsset);
@@ -108,7 +139,8 @@ public class AssetPanel extends JPanel {
 
         JButton saveButton = new JButton("저장");
         saveButton.addActionListener(event -> {
-
+            int cash = Integer.parseInt(textField.getText());
+            user.addCash(cash);
 
             updateContentPanel();
         });
@@ -136,7 +168,12 @@ public class AssetPanel extends JPanel {
 
         JButton saveButton = new JButton("저장");
         saveButton.addActionListener(event -> {
+            String name = textField1.getText();
+            int amount = Integer.parseInt(textField2.getText());
 
+            user.addAccount(new Account(name, amount));
+
+            updateContentPanel();
         });
         assetInputPanel.add(saveButton);
 
@@ -163,9 +200,11 @@ public class AssetPanel extends JPanel {
         JButton saveButton = new JButton("저장");
         saveButton.addActionListener(event -> {
             String cardName = textField1.getText();
-            String bankBookName = textField2.getText();
+            String accountName = textField2.getText();
 
+            user.addCard(new Card(cardName, accountName));
 
+            updateContentPanel();
         });
         assetInputPanel.add(saveButton);
 

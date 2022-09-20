@@ -35,4 +35,15 @@ class UserTest {
         assertEquals("카드1", user.card().get(0).name());
         assertEquals("통장1", user.card().get(0).linkedAccount());
     }
+
+    @Test
+    void totalAccountAmount() {
+        User user = new User();
+
+        user.addAccount(new Account("통장1", 1000));
+        user.addAccount(new Account("통장2", 2000));
+        user.addAccount(new Account("통장3", 2000));
+
+        assertEquals(5000, user.totalAccountAmount());
+    }
 }

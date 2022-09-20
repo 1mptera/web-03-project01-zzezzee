@@ -22,7 +22,7 @@ public class User {
     }
 
     public List<Account> account() {
-        return new ArrayList<>(accounts);
+        return accounts;
     }
 
     public void addCard(Card card) {
@@ -32,4 +32,15 @@ public class User {
     public List<Card> card() {
         return new ArrayList<>(cards);
     }
+
+    public int totalAccountAmount() {
+        int totalAccountAmount = 0;
+
+        for (Account account : accounts) {
+            totalAccountAmount += account.amount();
+        }
+
+        return totalAccountAmount;
+    }
+
 }
