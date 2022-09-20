@@ -22,6 +22,4 @@ class TransactionTest {
         assertEquals(10000, transaction.amount());
         assertEquals("용돈", transaction.comment());
     }
-
-
 }

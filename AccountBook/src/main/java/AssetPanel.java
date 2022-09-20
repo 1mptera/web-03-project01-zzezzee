@@ -1,8 +1,3 @@
-import models.Asset;
-import models.BankBook;
-import models.Card;
-import models.Cash;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,12 +10,10 @@ import java.awt.SystemColor;
 public class AssetPanel extends JPanel {
     private JPanel contentPanel;
     private JPanel statusPanel;
-    private Asset asset;
-    private Cash cash;
 
-    public AssetPanel(Asset asset, Cash cash) {
-        this.asset = asset;
-        this.cash = cash;
+
+    public AssetPanel() {
+
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -39,6 +32,7 @@ public class AssetPanel extends JPanel {
         initCashPanel();
         initBankBookPanel();
         initCardPanel();
+
         initListPanel1();
         initListPanel2();
     }
@@ -58,19 +52,9 @@ public class AssetPanel extends JPanel {
         listPanel1.setBackground(Color.ORANGE);
         listPanel1.setLayout(new GridLayout(0, 2));
 
-        for (BankBook bankBook : asset.bankBook()) {
-            JLabel label = new JLabel(bankBook.name() + " :" + bankBook.amount());
-            JButton button = new JButton("x");
-            button.addActionListener( event -> {
-                asset.bankBook().remove(bankBook);
-                updateContentPanel();
-            });
-            listPanel1.add(label);
-            listPanel1.add(button);
-        }
-
         contentPanel.add(listPanel1);
     }
+
 
     private void initListPanel2() {
         JPanel listPanel2 = new JPanel();
@@ -89,20 +73,21 @@ public class AssetPanel extends JPanel {
 
         statusPanel.add(new JLabel("총 자산: "));
         JTextField totalAsset = new JTextField(10);
-        totalAsset.setText(Integer.toString(asset.amount()));
+
         totalAsset.setEditable(false);
         statusPanel.add(totalAsset);
 
         statusPanel.add(new JLabel("통장: "));
         JTextField bankBookAsset = new JTextField(10);
-        bankBookAsset.setText(Integer.toString(asset.totalBankBookAmount()));
+
         totalAsset.setEditable(false);
 
         statusPanel.add(bankBookAsset);
 
         statusPanel.add(new JLabel("현금: "));
         JTextField cashAsset = new JTextField(10);
-        cashAsset.setText(Integer.toString(cash.amount()));
+
+
         totalAsset.setEditable(false);
         statusPanel.add(cashAsset);
 
@@ -122,10 +107,9 @@ public class AssetPanel extends JPanel {
         assetInputPanel.add(textField);
 
         JButton saveButton = new JButton("저장");
-        saveButton.addActionListener(event ->{
-            int amount = Integer.parseInt(textField.getText());
-            cash.income(amount);
-            asset.add(cash);
+        saveButton.addActionListener(event -> {
+
+
             updateContentPanel();
         });
         assetInputPanel.add(saveButton);
@@ -151,12 +135,8 @@ public class AssetPanel extends JPanel {
         assetInputPanel.add(textField2);
 
         JButton saveButton = new JButton("저장");
-        saveButton.addActionListener( event -> {
-            String bankBookName = textField1.getText();
-            int bankBookAmount  = Integer.parseInt(textField2.getText());
+        saveButton.addActionListener(event -> {
 
-            asset.add(new BankBook(bankBookName, bankBookAmount));
-            updateContentPanel();
         });
         assetInputPanel.add(saveButton);
 
@@ -181,12 +161,11 @@ public class AssetPanel extends JPanel {
         assetInputPanel.add(textField2);
 
         JButton saveButton = new JButton("저장");
-        saveButton.addActionListener( event -> {
+        saveButton.addActionListener(event -> {
             String cardName = textField1.getText();
-            String bankBookName  = textField2.getText();
+            String bankBookName = textField2.getText();
 
-            new Card(cardName, bankBookName, asset.bankBook());
-            updateContentPanel();
+
         });
         assetInputPanel.add(saveButton);
 
@@ -209,7 +188,6 @@ public class AssetPanel extends JPanel {
     private JButton createCashButton() {
         JButton button = new JButton("현금");
         button.addActionListener(event -> {
-
 
 
         });
