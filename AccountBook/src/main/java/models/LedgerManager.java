@@ -27,6 +27,8 @@ public class LedgerManager {
         payment = transaction.payment();
         amount = transaction.amount();
 
+        //TODO trasactionManager에 추가도 해줘야 함
+
         if(type.equals("수입") && payment.equals("현금")){
             receiveCash();
         }
@@ -36,7 +38,7 @@ public class LedgerManager {
         }
 
         if (!payment.equals("현금")) {
-            user.accountTransaction(type, payment, amount);
+            user.reflectTransaction(type, payment, amount);
         }
     }
 

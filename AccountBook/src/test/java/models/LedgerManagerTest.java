@@ -6,15 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LedgerManagerTest {
 
-//    @Test
-//    void create() {
-//        LedgerManager ledgerManager = new LedgerManager();
-//
-//        ledgerManager.addTransaction();
-//
-//
-//    }
-
     @Test
     void classifyTransaction() {
         User user = new User();

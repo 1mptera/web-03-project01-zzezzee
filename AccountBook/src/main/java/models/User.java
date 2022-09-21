@@ -50,7 +50,13 @@ public class User {
         cash -= amount;
     }
 
-    public void accountTransaction(String type, String payment, int amount) {
+    public void reflectTransaction(String type, String payment, int amount) {
+        for (Card card : cards) {
+            if (card.name().equals(payment)) {
+                reflectTransaction(type, card.linkedAccount(), amount);
+                return;
+            }
+        }
         for (Account account : accounts) {
             if (account.name().equals(payment)) {
                 if (type.equals("수입")) {
@@ -59,14 +65,6 @@ public class User {
                 if (type.equals("지출")) {
                     account.spend(amount);
                 }
-            }
-        }
-    }
-
-    public void cardTransaction(String type, String payment, int amount) {
-        for (Card card : cards) {
-            if (card.name().equals(payment)) {
-                accountTransaction(type, card.linkedAccount(), amount);
             }
         }
     }

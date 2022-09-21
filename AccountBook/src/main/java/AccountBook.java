@@ -67,7 +67,7 @@ public class AccountBook {
     private JButton createInputButton() {
         JButton inputButton = new JButton("입력");
         inputButton.addActionListener(event -> {
-            InputPanel inputPanel = new InputPanel();
+            InputPanel inputPanel = new InputPanel(user);
             updateContentPanel(inputPanel);
         });
         inputButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

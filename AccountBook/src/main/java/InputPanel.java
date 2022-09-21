@@ -1,3 +1,7 @@
+import models.LedgerManager;
+import models.Transaction;
+import models.User;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -8,9 +12,15 @@ import java.awt.GridLayout;
 import java.awt.SystemColor;
 
 public class InputPanel extends JPanel {
+    private User user;
+    private LedgerManager ledgerManager;
+
     private JPanel contentPanel;
 
-    public InputPanel() {
+    public InputPanel(User user) {
+        this.user = user;
+        ledgerManager = new LedgerManager(user);
+
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
         setBackground(Color.ORANGE);
@@ -50,7 +60,27 @@ public class InputPanel extends JPanel {
 
         JLabel label6 = new JLabel("");
         JButton button = new JButton("추가");
+        button.addActionListener( event -> {
+            String date = textField1.getText();
+            String type = textField2.getText();
+            String payment = textField3.getText();
+            int amount = Integer.parseInt(textField4.getText());
+            String comment = textField5.getText();
 
+            ledgerManager.transferTransaction(new Transaction(
+                    date,
+                    type,
+                    payment,
+                    amount,
+                    comment
+            ));
+
+            textField1.setText("");
+            textField2.setText("");
+            textField3.setText("");
+            textField4.setText("");
+            textField5.setText("");
+        });
 
         contentPanel.add(label1);
         contentPanel.add(textField1);
