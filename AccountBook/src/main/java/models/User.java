@@ -2,7 +2,6 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class User {
     private int cash = 0;
@@ -13,6 +12,14 @@ public class User {
         return cash;
     }
 
+    public List<Account> account() {
+        return accounts;
+    }
+
+    public List<Card> card() {
+        return cards;
+    }
+
     public void addCash(int amount) {
         cash += amount;
     }
@@ -21,16 +28,8 @@ public class User {
         accounts.add(account);
     }
 
-    public List<Account> account() {
-        return accounts;
-    }
-
     public void addCard(Card card) {
         cards.add(card);
-    }
-
-    public List<Card> card() {
-        return cards;
     }
 
     public int totalAccountAmount() {
@@ -43,4 +42,32 @@ public class User {
         return totalAccountAmount;
     }
 
+    public void receiveCash(int amount) {
+        cash += amount;
+    }
+
+    public void spendCash(int amount) {
+        cash -= amount;
+    }
+
+    public void accountTransaction(String type, String payment, int amount) {
+        for (Account account : accounts) {
+            if (account.name().equals(payment)) {
+                if (type.equals("수입")) {
+                    account.receive(amount);
+                }
+                if (type.equals("지출")) {
+                    account.spend(amount);
+                }
+            }
+        }
+    }
+
+    public void cardTransaction(String type, String payment, int amount) {
+        for (Card card : cards) {
+            if (card.name().equals(payment)) {
+                accountTransaction(type, card.linkedAccount(), amount);
+            }
+        }
+    }
 }

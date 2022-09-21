@@ -16,4 +16,12 @@ public class Account {
     public int amount() {
         return amount;
     }
+
+    public void receive(int amount) {
+        this.amount += amount;
+    }
+
+    public void spend(int amount) {
+        this.amount -= amount;
+    }
 }
