@@ -130,6 +130,7 @@ public class TransactionPanel extends JPanel {
 
         JTextField textField1 = new JTextField(10);
         textField1.setEditable(false);
+        textField1.setText(Integer.toString(transactionManager.totalSpend()));
         statusPanel.add(textField1);
 
         JLabel label2 = new JLabel(" 수입 합계: ");
@@ -137,13 +138,15 @@ public class TransactionPanel extends JPanel {
 
         JTextField textField2 = new JTextField(10);
         textField2.setEditable(false);
+        textField2.setText(Integer.toString(transactionManager.totalReceive()));
         statusPanel.add(textField2);
 
-        JLabel label3 = new JLabel(" 자산 합계: ");
+        JLabel label3 = new JLabel(" 금액 합계: ");
         statusPanel.add(label3);
 
         JTextField textField3 = new JTextField(10);
         textField3.setEditable(false);
+        textField3.setText(Integer.toString(transactionManager.totalSpend() + transactionManager.totalReceive()));
         statusPanel.add(textField3);
 
         add(statusPanel);
