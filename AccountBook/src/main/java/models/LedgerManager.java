@@ -27,7 +27,7 @@ public class LedgerManager {
         payment = transaction.payment();
         amount = transaction.amount();
 
-        //TODO trasactionManager에 추가도 해줘야 함
+
 
         if(type.equals("수입") && payment.equals("현금")){
             receiveCash();

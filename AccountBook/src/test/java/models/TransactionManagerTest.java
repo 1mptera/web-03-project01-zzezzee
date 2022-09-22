@@ -13,7 +13,6 @@ class TransactionManagerTest {
     void addTransaction() {
         TransactionManager transactionManager = new TransactionManager();
 
-
         transactionManager.addTransaction(new Transaction("", "", "", 0, ""));
 
         assertEquals(1, transactionManager.transactions().size());

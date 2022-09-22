@@ -10,9 +10,7 @@ public class TransactionManager {
         transactions.add(transaction);
     }
 
-
     public List<Transaction> transactions() {
         return transactions;
     }
-
 }
