@@ -2,12 +2,14 @@ package models;
 
 public class LedgerManager {
     private User user;
+    private TransactionManager transactionManager;
     private String type = "";
     private String payment = "";
     private int amount = 0;
 
-    public LedgerManager(User user) {
+    public LedgerManager(User user, TransactionManager transactionManager) {
         this.user = user;
+        this.transactionManager = transactionManager;
     }
 
     public String type() {
@@ -27,6 +29,8 @@ public class LedgerManager {
         payment = transaction.payment();
         amount = transaction.amount();
 
+        transactionManager.addTransaction(transaction);
+
         if(type.equals("수입") && payment.equals("현금")){
             receiveCash();
         }
@@ -36,7 +40,7 @@ public class LedgerManager {
         }
 
         if (!payment.equals("현금")) {
-            user.accountTransaction(type, payment, amount);
+            user.reflectTransaction(type, payment, amount);
         }
     }
 

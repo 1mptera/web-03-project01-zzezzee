@@ -104,6 +104,7 @@ public class AssetPanel extends JPanel {
         statusPanel.add(new JLabel("총 자산: "));
         JTextField totalAsset = new JTextField(10);
         totalAsset.setText(Integer.toString(user.cash() + user.totalAccountAmount()));
+        totalAsset.setHorizontalAlignment(JTextField.RIGHT);
 
         totalAsset.setEditable(false);
         statusPanel.add(totalAsset);
@@ -111,6 +112,8 @@ public class AssetPanel extends JPanel {
         statusPanel.add(new JLabel("통장: "));
         JTextField bankBookAsset = new JTextField(10);
         bankBookAsset.setText(Integer.toString(user.totalAccountAmount()));
+        bankBookAsset.setHorizontalAlignment(JTextField.RIGHT);
+
 
         totalAsset.setEditable(false);
         statusPanel.add(bankBookAsset);
@@ -118,6 +121,7 @@ public class AssetPanel extends JPanel {
         statusPanel.add(new JLabel("현금: "));
         JTextField cashAsset = new JTextField(10);
         cashAsset.setText(Integer.toString(user.cash()));
+        cashAsset.setHorizontalAlignment(JTextField.RIGHT);
 
         totalAsset.setEditable(false);
         statusPanel.add(cashAsset);

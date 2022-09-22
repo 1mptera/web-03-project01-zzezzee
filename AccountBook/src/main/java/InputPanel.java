@@ -1,16 +1,28 @@
+import models.LedgerManager;
+import models.Transaction;
+import models.TransactionManager;
+import models.User;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
 
 public class InputPanel extends JPanel {
+    private User user;
+    private LedgerManager ledgerManager;
+    private TransactionManager transactionManager;
+
     private JPanel contentPanel;
 
-    public InputPanel() {
+    public InputPanel(User user, TransactionManager transactionManager) {
+        this.user = user;
+        this.transactionManager = transactionManager;
+        ledgerManager = new LedgerManager(user, transactionManager);
+
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
         setBackground(Color.ORANGE);
@@ -50,7 +62,27 @@ public class InputPanel extends JPanel {
 
         JLabel label6 = new JLabel("");
         JButton button = new JButton("추가");
+        button.addActionListener( event -> {
+            String date = textField1.getText();
+            String type = textField2.getText();
+            String payment = textField3.getText();
+            int amount = Integer.parseInt(textField4.getText());
+            String comment = textField5.getText();
 
+            ledgerManager.transferTransaction(new Transaction(
+                    date,
+                    type,
+                    payment,
+                    amount,
+                    comment
+            ));
+
+            textField1.setText("");
+            textField2.setText("");
+            textField3.setText("");
+            textField4.setText("");
+            textField5.setText("");
+        });
 
         contentPanel.add(label1);
         contentPanel.add(textField1);
