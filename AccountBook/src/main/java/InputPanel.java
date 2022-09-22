@@ -1,4 +1,5 @@
-import models.LedgerManager;
+import files.TransactionFile;
+import models.Ledger;
 import models.Transaction;
 import models.TransactionManager;
 import models.User;
@@ -10,18 +11,22 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.io.File;
+import java.io.IOException;
 
 public class InputPanel extends JPanel {
     private User user;
-    private LedgerManager ledgerManager;
+    private Ledger ledgerManager;
     private TransactionManager transactionManager;
+    private TransactionFile transactionFile;
 
     private JPanel contentPanel;
 
-    public InputPanel(User user, TransactionManager transactionManager) {
+    public InputPanel(User user, TransactionManager transactionManager, TransactionFile transactionFile) {
         this.user = user;
         this.transactionManager = transactionManager;
-        ledgerManager = new LedgerManager(user, transactionManager);
+        this.transactionFile = transactionFile;
+        ledgerManager = new Ledger(user, transactionManager);
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -82,6 +87,12 @@ public class InputPanel extends JPanel {
             textField3.setText("");
             textField4.setText("");
             textField5.setText("");
+
+            try {
+                transactionFile.updateFile(new File("Transaction.csv"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         contentPanel.add(label1);

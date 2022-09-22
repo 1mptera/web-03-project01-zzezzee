@@ -1,3 +1,4 @@
+import files.TransactionFile;
 import models.TransactionManager;
 import models.User;
 
@@ -8,28 +9,37 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class AccountBook {
     JFrame frame;
     private JPanel contentPanel;
     private User user;
     private TransactionManager transactionManager;
+    private TransactionFile transactionFile;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         AccountBook application = new AccountBook();
         application.run();
     }
 
-    private void run() {
+    private void run() throws FileNotFoundException {
         initObject();
-
+        initFile();
         initFrame();
     }
 
     private void initObject() {
         user = new User();
         transactionManager = new TransactionManager();
+    }
+
+    private void initFile() throws FileNotFoundException {
+        File file = new File("Transaction.csv");
+        transactionFile = new TransactionFile(transactionManager);
+        transactionFile.initFile(file);
     }
 
     private void initFrame() {
@@ -70,7 +80,7 @@ public class AccountBook {
     private JButton createInputButton() {
         JButton inputButton = new JButton("입력");
         inputButton.addActionListener(event -> {
-            InputPanel inputPanel = new InputPanel(user, transactionManager);
+            InputPanel inputPanel = new InputPanel(user, transactionManager, transactionFile);
             updateContentPanel(inputPanel);
         });
         inputButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -81,7 +91,7 @@ public class AccountBook {
     private JButton createTransactionButton() {
         JButton transactionButton = new JButton("내역");
         transactionButton.addActionListener(event -> {
-            TransactionPanel transactionPanel = new TransactionPanel(transactionManager);
+            TransactionPanel transactionPanel = new TransactionPanel(transactionManager, transactionFile);
             updateContentPanel(transactionPanel);
         });
         transactionButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

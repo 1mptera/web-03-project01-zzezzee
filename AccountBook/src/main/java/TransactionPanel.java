@@ -1,3 +1,4 @@
+import files.TransactionFile;
 import models.Transaction;
 import models.TransactionManager;
 
@@ -10,14 +11,18 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.io.File;
+import java.io.IOException;
 
 public class TransactionPanel extends JPanel {
     private JPanel contentPanel;
     private TransactionManager transactionManager;
+    private TransactionFile transactionFile;
     private JPanel statusPanel;
 
-    public TransactionPanel(TransactionManager transactionManager) {
+    public TransactionPanel(TransactionManager transactionManager, TransactionFile transactionFile) {
         this.transactionManager = transactionManager;
+        this.transactionFile = transactionFile;
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -101,6 +106,12 @@ public class TransactionPanel extends JPanel {
                 transactionManager.editTransaction(transaction, date, type, payment, amount, comment);
 
                 updatePanel();
+
+                try {
+                    transactionFile.updateFile(new File("Transaction.csv"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
             transactionPanel.add(button1);
 
@@ -109,6 +120,12 @@ public class TransactionPanel extends JPanel {
                 transactionManager.transactions().remove(transaction);
 
                 updatePanel();
+
+                try {
+                    transactionFile.updateFile(new File("Transaction.csv"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
 
             transactionPanel.add(button2);
