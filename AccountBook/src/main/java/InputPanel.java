@@ -1,4 +1,4 @@
-import models.LedgerManager;
+import models.Ledger;
 import models.Transaction;
 import models.TransactionManager;
 import models.User;
@@ -13,7 +13,7 @@ import java.awt.SystemColor;
 
 public class InputPanel extends JPanel {
     private User user;
-    private LedgerManager ledgerManager;
+    private Ledger ledgerManager;
     private TransactionManager transactionManager;
 
     private JPanel contentPanel;
@@ -21,7 +21,7 @@ public class InputPanel extends JPanel {
     public InputPanel(User user, TransactionManager transactionManager) {
         this.user = user;
         this.transactionManager = transactionManager;
-        ledgerManager = new LedgerManager(user, transactionManager);
+        ledgerManager = new Ledger(user, transactionManager);
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);

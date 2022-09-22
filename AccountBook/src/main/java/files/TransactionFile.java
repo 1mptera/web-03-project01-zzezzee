@@ -5,6 +5,9 @@ import models.TransactionManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class TransactionFile {
@@ -14,9 +17,7 @@ public class TransactionFile {
         this.transactionManager = transactionManager;
     }
 
-    public void initFile() throws FileNotFoundException {
-        File file = new File("Transaction.csv");
-
+    public void initFile(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {
@@ -31,5 +32,21 @@ public class TransactionFile {
 
             transactionManager.addTransaction(new Transaction(date, type, payment, amount, comment));
         }
+    }
+
+    public void updateFile(List<Transaction> transactions) throws IOException {
+        FileWriter fileWriter = new FileWriter("TransactionTest.csv");
+
+        for (Transaction transaction : transactions) {
+            fileWriter.write(
+                            transaction.date() + "," +
+                            transaction.type() + "," +
+                            transaction.payment() + "," +
+                            transaction.amount() + "," +
+                            transaction.comment()
+            );
+        }
+
+        fileWriter.close();
     }
 }

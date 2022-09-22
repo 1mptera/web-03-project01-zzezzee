@@ -1,13 +1,13 @@
 package models;
 
-public class LedgerManager {
+public class Ledger {
     private User user;
     private TransactionManager transactionManager;
     private String type = "";
     private String payment = "";
     private int amount = 0;
 
-    public LedgerManager(User user, TransactionManager transactionManager) {
+    public Ledger(User user, TransactionManager transactionManager) {
         this.user = user;
         this.transactionManager = transactionManager;
     }

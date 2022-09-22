@@ -1,5 +1,7 @@
 package models;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,6 @@ public class TransactionManager {
         return totalSpend;
     }
 
-
     public void editTransaction(Transaction transaction, String date, String type, String payment, int amount, String comment) {
         transaction.editDate(date);
         transaction.editType(type);
@@ -46,4 +47,6 @@ public class TransactionManager {
         transaction.editAmount(amount);
         transaction.editComment(comment);
     }
+
+
 }
