@@ -39,4 +39,24 @@ public class Transaction {
     public String comment() {
         return comment;
     }
+
+    public void editDate(String date) {
+        this.date = date;
+    }
+
+    public void editType(String type) {
+        this.type = type;
+    }
+
+    public void editPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public void editAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public void editComment(String comment) {
+        this.comment = comment;
+    }
 }
