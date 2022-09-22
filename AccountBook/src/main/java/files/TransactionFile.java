@@ -34,10 +34,10 @@ public class TransactionFile {
         }
     }
 
-    public void updateFile(List<Transaction> transactions) throws IOException {
-        FileWriter fileWriter = new FileWriter("TransactionTest.csv");
+    public void updateFile(File file) throws IOException {
+        FileWriter fileWriter = new FileWriter(file);
 
-        for (Transaction transaction : transactions) {
+        for (Transaction transaction : transactionManager.transactions()) {
             fileWriter.write(
                             transaction.date() + "," +
                             transaction.type() + "," +

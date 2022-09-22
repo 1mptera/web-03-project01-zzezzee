@@ -1,3 +1,4 @@
+import files.TransactionFile;
 import models.TransactionManager;
 import models.User;
 
@@ -8,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class AccountBook {
     JFrame frame;
@@ -16,20 +19,26 @@ public class AccountBook {
     private TransactionManager transactionManager;
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         AccountBook application = new AccountBook();
         application.run();
     }
 
-    private void run() {
+    private void run() throws FileNotFoundException {
         initObject();
-
+        initFile();
         initFrame();
     }
 
     private void initObject() {
         user = new User();
         transactionManager = new TransactionManager();
+    }
+
+    private void initFile() throws FileNotFoundException {
+        File file = new File("Transaction.csv");
+        TransactionFile transactionFile = new TransactionFile(transactionManager);
+        transactionFile.initFile(file);
     }
 
     private void initFrame() {

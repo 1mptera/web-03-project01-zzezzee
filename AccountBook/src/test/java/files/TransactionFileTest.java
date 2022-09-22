@@ -49,7 +49,7 @@ class TransactionFileTest {
 
         transactionManager.addTransaction(new Transaction("09-22", "수입", "재원통장", 500, "주움"));
 
-        transactionFile.updateFile(transactionManager.transactions());
+        transactionFile.updateFile(file);
 
         String line1 = scanner.nextLine();
 
