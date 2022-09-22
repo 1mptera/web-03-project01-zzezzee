@@ -28,4 +28,27 @@ class TransactionManagerTest {
 
         assertEquals(1, transactionManager.transactions().size());
     }
+
+    @Test
+    void toptalReceive() {
+        TransactionManager transactionManager = new TransactionManager();
+        transactionManager.addTransaction(new Transaction("", "수입", "", 1000, ""));
+        transactionManager.addTransaction(new Transaction("", "수입", "", 5000, ""));
+
+        int totalReceive = transactionManager.totalReceive();
+
+        assertEquals(6000, totalReceive);
+    }
+
+    @Test
+    void totalSpend() {
+        TransactionManager transactionManager = new TransactionManager();
+        transactionManager.addTransaction(new Transaction("", "지출", "", 1000, ""));
+        transactionManager.addTransaction(new Transaction("", "지출", "", 5000, ""));
+
+        int totalSpend = transactionManager.totalSpend();
+
+        assertEquals(-6000, totalSpend);
+    }
+
 }
