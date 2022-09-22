@@ -43,7 +43,7 @@ public class TransactionFile {
                             transaction.type() + "," +
                             transaction.payment() + "," +
                             transaction.amount() + "," +
-                            transaction.comment()
+                            transaction.comment() + "\n"
             );
         }
 
