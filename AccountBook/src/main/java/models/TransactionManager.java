@@ -7,6 +7,11 @@ import java.util.List;
 
 public class TransactionManager {
     private List<Transaction> transactions = new ArrayList<>();
+    private User user;
+
+    public TransactionManager(User user) {
+        this.user = user;
+    }
 
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
@@ -47,6 +52,4 @@ public class TransactionManager {
         transaction.editAmount(amount);
         transaction.editComment(comment);
     }
-
-
 }

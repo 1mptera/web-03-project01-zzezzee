@@ -1,3 +1,4 @@
+import files.CashFile;
 import files.TransactionFile;
 import models.Transaction;
 import models.TransactionManager;
@@ -18,11 +19,13 @@ public class TransactionPanel extends JPanel {
     private JPanel contentPanel;
     private TransactionManager transactionManager;
     private TransactionFile transactionFile;
+    private CashFile cashFile;
     private JPanel statusPanel;
 
-    public TransactionPanel(TransactionManager transactionManager, TransactionFile transactionFile) {
+    public TransactionPanel(TransactionManager transactionManager, TransactionFile transactionFile, CashFile cashFile) {
         this.transactionManager = transactionManager;
         this.transactionFile = transactionFile;
+        this.cashFile = cashFile;
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -31,7 +34,6 @@ public class TransactionPanel extends JPanel {
 
         initContentPanel();
         initStatusPanel();
-
     }
 
     private void initContentPanel() {
@@ -109,6 +111,8 @@ public class TransactionPanel extends JPanel {
 
                 try {
                     transactionFile.updateFile(new File("Transaction.csv"));
+                    cashFile.updateFile(new File("Cash.csv"));
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -117,12 +121,14 @@ public class TransactionPanel extends JPanel {
 
             JButton button2 = new JButton("X");
             button2.addActionListener( event -> {
+//                user.removeTransaction
                 transactionManager.transactions().remove(transaction);
 
                 updatePanel();
 
                 try {
                     transactionFile.updateFile(new File("Transaction.csv"));
+                    cashFile.updateFile(new File("Cash.csv"));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
