@@ -1,3 +1,4 @@
+import models.TransactionManager;
 import models.User;
 
 import javax.swing.JButton;
@@ -12,6 +13,7 @@ public class AccountBook {
     JFrame frame;
     private JPanel contentPanel;
     private User user;
+    private TransactionManager transactionManager;
 
 
     public static void main(String[] args) {
@@ -27,6 +29,7 @@ public class AccountBook {
 
     private void initObject() {
         user = new User();
+        transactionManager = new TransactionManager();
     }
 
     private void initFrame() {
@@ -67,7 +70,7 @@ public class AccountBook {
     private JButton createInputButton() {
         JButton inputButton = new JButton("입력");
         inputButton.addActionListener(event -> {
-            InputPanel inputPanel = new InputPanel(user);
+            InputPanel inputPanel = new InputPanel(user, transactionManager);
             updateContentPanel(inputPanel);
         });
         inputButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -78,7 +81,7 @@ public class AccountBook {
     private JButton createTransactionButton() {
         JButton transactionButton = new JButton("내역");
         transactionButton.addActionListener(event -> {
-            TransactionPanel transactionPanel = new TransactionPanel();
+            TransactionPanel transactionPanel = new TransactionPanel(transactionManager);
             updateContentPanel(transactionPanel);
         });
         transactionButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

@@ -9,7 +9,8 @@ class LedgerManagerTest {
     @Test
     void classifyTransaction() {
         User user = new User();
-        LedgerManager ledgerManager = new LedgerManager(user);
+        TransactionManager transactionManager = new TransactionManager();
+        LedgerManager ledgerManager = new LedgerManager(user, transactionManager);
 
         Transaction transaction1 = new Transaction(
                 "2022-09-19",
@@ -29,7 +30,8 @@ class LedgerManagerTest {
     @Test
     void receiveCash() {
         User user = new User();
-        LedgerManager ledgerManager = new LedgerManager(user);
+        TransactionManager transactionManager = new TransactionManager();
+        LedgerManager ledgerManager = new LedgerManager(user, transactionManager);
 
         Transaction transaction1 = new Transaction(
                 "2022-09-19",
@@ -47,7 +49,8 @@ class LedgerManagerTest {
     @Test
     void spendCash() {
         User user = new User();
-        LedgerManager ledgerManager = new LedgerManager(user);
+        TransactionManager transactionManager = new TransactionManager();
+        LedgerManager ledgerManager = new LedgerManager(user, transactionManager);
 
         Transaction transaction1 = new Transaction(
                 "2022-09-19",

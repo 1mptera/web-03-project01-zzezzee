@@ -1,12 +1,12 @@
 import models.LedgerManager;
 import models.Transaction;
+import models.TransactionManager;
 import models.User;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
@@ -14,12 +14,14 @@ import java.awt.SystemColor;
 public class InputPanel extends JPanel {
     private User user;
     private LedgerManager ledgerManager;
+    private TransactionManager transactionManager;
 
     private JPanel contentPanel;
 
-    public InputPanel(User user) {
+    public InputPanel(User user, TransactionManager transactionManager) {
         this.user = user;
-        ledgerManager = new LedgerManager(user);
+        this.transactionManager = transactionManager;
+        ledgerManager = new LedgerManager(user, transactionManager);
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
