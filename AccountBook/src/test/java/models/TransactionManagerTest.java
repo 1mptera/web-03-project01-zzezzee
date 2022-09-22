@@ -28,7 +28,9 @@ class TransactionManagerTest {
 
     @Test
     void toptalReceive() {
+
         TransactionManager transactionManager = new TransactionManager();
+
         transactionManager.addTransaction(new Transaction("", "수입", "", 1000, ""));
         transactionManager.addTransaction(new Transaction("", "수입", "", 5000, ""));
 

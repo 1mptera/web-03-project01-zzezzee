@@ -90,4 +90,9 @@ class UserTest {
         assertEquals(18000, user.account().get(1).amount());
 
     }
+
+    @Test
+    void editAsset() {
+
+    }
 }

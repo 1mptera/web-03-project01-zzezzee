@@ -1,3 +1,4 @@
+import files.CashFile;
 import files.TransactionFile;
 import models.Ledger;
 import models.Transaction;
@@ -19,13 +20,15 @@ public class InputPanel extends JPanel {
     private Ledger ledgerManager;
     private TransactionManager transactionManager;
     private TransactionFile transactionFile;
+    private CashFile cashFile;
 
     private JPanel contentPanel;
 
-    public InputPanel(User user, TransactionManager transactionManager, TransactionFile transactionFile) {
+    public InputPanel(User user, TransactionManager transactionManager, TransactionFile transactionFile, CashFile cashFile) {
         this.user = user;
         this.transactionManager = transactionManager;
         this.transactionFile = transactionFile;
+        this.cashFile = cashFile;
         ledgerManager = new Ledger(user, transactionManager);
 
         setBackground(SystemColor.activeCaption);
@@ -40,7 +43,7 @@ public class InputPanel extends JPanel {
     private void initContentPanel() {
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayout(0,2));
-        contentPanel.setBounds(0, 0, 600, 300);
+        contentPanel.setBounds(0, 0, 600, 380);
 
         contentPanel.setBackground(Color.PINK);
 
@@ -50,19 +53,26 @@ public class InputPanel extends JPanel {
     }
 
     private void initButtons() {
-        JLabel label1 = new JLabel("Date : ");
+        JLabel label1 = new JLabel("날짜 : ");
+        label1.setHorizontalAlignment(JLabel.RIGHT);
         JTextField textField1 = new JTextField(10);
 
-        JLabel label2 = new JLabel("Type : ");
+        JLabel label2 = new JLabel("수입 or 지출 : ");
+        label2.setHorizontalAlignment(JLabel.RIGHT);
+
         JTextField textField2 = new JTextField(10);
 
-        JLabel label3 = new JLabel("payment : ");
+        JLabel label3 = new JLabel("결제수단 : ");
+        label3.setHorizontalAlignment(JLabel.RIGHT);
+
         JTextField textField3 = new JTextField(10);
 
-        JLabel label4 = new JLabel("amount : ");
+        JLabel label4 = new JLabel("금액 : ");
+        label4.setHorizontalAlignment(JLabel.RIGHT);
         JTextField textField4 = new JTextField(10);
 
-        JLabel label5 = new JLabel("comment");
+        JLabel label5 = new JLabel("메모");
+        label5.setHorizontalAlignment(JLabel.RIGHT);
         JTextField textField5 = new JTextField(10);
 
         JLabel label6 = new JLabel("");
@@ -90,6 +100,7 @@ public class InputPanel extends JPanel {
 
             try {
                 transactionFile.updateFile(new File("Transaction.csv"));
+                cashFile.updateFile(new File("Cash.csv"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

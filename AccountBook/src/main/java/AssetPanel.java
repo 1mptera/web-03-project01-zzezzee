@@ -1,3 +1,4 @@
+import files.CashFile;
 import models.Account;
 import models.Card;
 import models.User;
@@ -10,15 +11,19 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.io.File;
+import java.io.IOException;
 
 public class AssetPanel extends JPanel {
     private JPanel contentPanel;
     private JPanel statusPanel;
     private User user;
+    private CashFile cashFile;
 
 
-    public AssetPanel(User user) {
+    public AssetPanel(User user, CashFile cashFile) {
         this.user = user;
+        this.cashFile = cashFile;
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -53,7 +58,7 @@ public class AssetPanel extends JPanel {
 
     private void initListPanel1() {
         JPanel listPanel1 = new JPanel();
-        listPanel1.setBounds(200, 150, 200, 130);
+        listPanel1.setBounds(0, 150, 400, 130);
         listPanel1.setBackground(Color.ORANGE);
         listPanel1.setLayout(new GridLayout(0, 2));
 
@@ -145,6 +150,12 @@ public class AssetPanel extends JPanel {
         saveButton.addActionListener(event -> {
             int cash = Integer.parseInt(textField.getText());
             user.addCash(cash);
+
+            try {
+                cashFile.updateFile(new File("Cash.csv"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
             updateContentPanel();
         });
