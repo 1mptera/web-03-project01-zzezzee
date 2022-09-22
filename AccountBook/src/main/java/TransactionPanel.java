@@ -15,7 +15,6 @@ public class TransactionPanel extends JPanel {
     private JPanel contentPanel;
     private TransactionManager transactionManager;
     private JPanel statusPanel;
-    private JPanel updatePanel;
 
     public TransactionPanel(TransactionManager transactionManager) {
         this.transactionManager = transactionManager;
@@ -26,7 +25,6 @@ public class TransactionPanel extends JPanel {
         setLayout(null);
 
         initContentPanel();
-        initUpdatePanel();
         initStatusPanel();
 
     }
@@ -34,7 +32,7 @@ public class TransactionPanel extends JPanel {
     private void initContentPanel() {
         contentPanel = new JPanel();
         contentPanel.setLayout(new BorderLayout());
-        contentPanel.setBounds(0, 0, 600, 280);
+        contentPanel.setBounds(0, 0, 600, 330);
 
         contentPanel.setBackground(Color.PINK);
 
@@ -93,6 +91,17 @@ public class TransactionPanel extends JPanel {
             transactionPanel.add(textField5);
 
             JButton button1 = new JButton("수정");
+            button1.addActionListener(event -> {
+                String date = textField1.getText();
+                String type = textField2.getText();
+                String payment = textField3.getText();
+                int amount = Integer.parseInt(textField4.getText());
+                String comment = textField5.getText();
+
+                transactionManager.editTransaction(transaction, date, type, payment, amount, comment);
+
+                updatePanel();
+            });
             transactionPanel.add(button1);
 
             JButton button2 = new JButton("X");
@@ -108,16 +117,6 @@ public class TransactionPanel extends JPanel {
         contentPanel.add(transactionPanel, BorderLayout.PAGE_START);
 
         add(contentPanel, BorderLayout.PAGE_START);
-    }
-
-    private void initUpdatePanel() {
-        updatePanel = new JPanel();
-        updatePanel.setLayout(new GridLayout(0, 7));
-        updatePanel.setBounds(0, 280, 600, 50);
-
-        updatePanel.setBackground(Color.orange);
-
-        add(updatePanel);
     }
 
     private void initStatusPanel() {
@@ -156,13 +155,10 @@ public class TransactionPanel extends JPanel {
         removeAll();
         initContentPanel();
         initStatusPanel();
-        initUpdatePanel();
 
         contentPanel.setVisible(false);
         contentPanel.setVisible(true);
         statusPanel.setVisible(false);
         statusPanel.setVisible(true);
-        updatePanel.setVisible(false);
-        updatePanel.setVisible(true);
     }
 }

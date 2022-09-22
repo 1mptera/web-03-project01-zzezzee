@@ -6,7 +6,6 @@ import java.util.List;
 public class TransactionManager {
     private List<Transaction> transactions = new ArrayList<>();
 
-
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
     }
@@ -37,5 +36,14 @@ public class TransactionManager {
         }
 
         return totalSpend;
+    }
+
+
+    public void editTransaction(Transaction transaction, String date, String type, String payment, int amount, String comment) {
+        transaction.editDate(date);
+        transaction.editType(type);
+        transaction.editPayment(payment);
+        transaction.editAmount(amount);
+        transaction.editComment(comment);
     }
 }
