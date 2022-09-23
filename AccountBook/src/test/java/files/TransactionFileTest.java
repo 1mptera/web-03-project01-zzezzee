@@ -2,21 +2,22 @@ package files;
 
 import models.Transaction;
 import models.TransactionManager;
+import models.User;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TransactionFileTest {
 
     @Test
     void initFile() throws IOException {
-        TransactionManager transactionManager = new TransactionManager();
+        User user = new User();
+        TransactionManager transactionManager = new TransactionManager(user);
 
         TransactionFile transactionFile = new TransactionFile(transactionManager);
 
@@ -39,7 +40,8 @@ class TransactionFileTest {
 
     @Test
     void updateFile() throws IOException {
-        TransactionManager transactionManager = new TransactionManager();
+        User user = new User();
+        TransactionManager transactionManager = new TransactionManager(user);
 
         TransactionFile transactionFile = new TransactionFile(transactionManager);
 

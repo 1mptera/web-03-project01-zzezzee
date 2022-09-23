@@ -1,3 +1,4 @@
+import files.AccountFile;
 import files.CashFile;
 import files.TransactionFile;
 import models.Ledger;
@@ -21,14 +22,16 @@ public class InputPanel extends JPanel {
     private TransactionManager transactionManager;
     private TransactionFile transactionFile;
     private CashFile cashFile;
+    private AccountFile accountFile;
 
     private JPanel contentPanel;
 
-    public InputPanel(User user, TransactionManager transactionManager, TransactionFile transactionFile, CashFile cashFile) {
+    public InputPanel(User user, TransactionManager transactionManager, TransactionFile transactionFile, CashFile cashFile, AccountFile accountFile) {
         this.user = user;
         this.transactionManager = transactionManager;
         this.transactionFile = transactionFile;
         this.cashFile = cashFile;
+        this.accountFile = accountFile;
         ledgerManager = new Ledger(user, transactionManager);
 
         setBackground(SystemColor.activeCaption);
@@ -101,6 +104,7 @@ public class InputPanel extends JPanel {
             try {
                 transactionFile.updateFile(new File("Transaction.csv"));
                 cashFile.updateFile(new File("Cash.csv"));
+                accountFile.updateFile(new File("Account.csv"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -38,7 +38,7 @@ class CashFileTest {
     @Test
     void updateFile() throws IOException {
         User user = new User();
-        TransactionManager transactionManager = new TransactionManager();
+        TransactionManager transactionManager = new TransactionManager(user);
         Ledger ledger = new Ledger(user, transactionManager);
 
         CashFile cashFile = new CashFile(user);
