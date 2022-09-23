@@ -90,7 +90,7 @@ public class User {
     private void reflectRemoveTransaction(String type, String payment, int amount) {
         for (Card card : cards) {
             if (card.name().equals(payment)) {
-                reflectTransaction(type, card.linkedAccount(), amount);
+                reflectTransaction(type, card.linkedAccount(), -amount);
                 return;
             }
         }

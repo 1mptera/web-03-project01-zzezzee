@@ -6,9 +6,11 @@ import models.Card;
 import models.User;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -24,7 +26,6 @@ public class AssetPanel extends JPanel {
     private CashFile cashFile;
     private AccountFile accountFile;
     private CardFile cardFile;
-
 
     public AssetPanel(User user, CashFile cashFile, AccountFile accountFile, CardFile cardFile) {
         this.user = user;
@@ -65,13 +66,17 @@ public class AssetPanel extends JPanel {
 
     private void initListPanel1() {
         JPanel listPanel1 = new JPanel();
-        listPanel1.setBounds(200, 150, 200, 130);
+        listPanel1.setBounds(0, 150, 300, 130);
         listPanel1.setBackground(new Color(245, 255, 250));
-        listPanel1.setLayout(new GridLayout(0, 2));
+        listPanel1.setLayout(new BorderLayout());
+
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(245, 255, 250));
+        panel.setLayout(new GridLayout(0, 2));
 
         for (Account account : user.account()){
             JLabel label = new JLabel(account.name() +" : " + account.amount());
-            listPanel1.add(label);
+            panel.add(label);
 
             JButton button = new JButton("x");
             button.addActionListener( event -> {
@@ -85,22 +90,27 @@ public class AssetPanel extends JPanel {
 
                 updateContentPanel();
             });
-            listPanel1.add(button);
+            panel.add(button);
         }
 
+        listPanel1.add(panel, BorderLayout.PAGE_START);
         contentPanel.add(listPanel1);
     }
 
 
     private void initListPanel2() {
         JPanel listPanel2 = new JPanel();
-        listPanel2.setBounds(400, 150, 200, 130);
+        listPanel2.setBounds(300, 150, 300, 130);
         listPanel2.setBackground(new Color(245, 255, 250));
-        listPanel2.setLayout(new GridLayout(0, 2));
+        listPanel2.setLayout(new BorderLayout());
+
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(245, 255, 250));
+        panel.setLayout(new GridLayout(0, 2));
 
         for (Card card : user.card()){
-            JLabel label = new JLabel(card.name() +" : " + card.linkedAccount());
-            listPanel2.add(label);
+            JLabel label = new JLabel(card.name() +" -> " + card.linkedAccount());
+            panel.add(label);
 
             JButton button = new JButton("x");
             button.addActionListener( event -> {
@@ -114,9 +124,10 @@ public class AssetPanel extends JPanel {
 
                 updateContentPanel();
             });
-            listPanel2.add(button);
+            panel.add(button);
         }
 
+        listPanel2.add(panel, BorderLayout.PAGE_START);
         contentPanel.add(listPanel2);
     }
 
@@ -140,7 +151,6 @@ public class AssetPanel extends JPanel {
         bankBookAsset.setText(df.format(user.totalAccountAmount()));
         bankBookAsset.setHorizontalAlignment(JTextField.RIGHT);
 
-
         totalAsset.setEditable(false);
         statusPanel.add(bankBookAsset);
 
@@ -161,8 +171,14 @@ public class AssetPanel extends JPanel {
         assetInputPanel.setBackground(new Color(245, 255, 250));
         assetInputPanel.setLayout(new GridLayout(0, 1));
 
-        JLabel label = new JLabel("현금 입력");
+        JLabel label = new JLabel("");
         assetInputPanel.add(label);
+
+        JLabel label2 = new JLabel("");
+        assetInputPanel.add(label2);
+
+        JLabel label3 = new JLabel("현금 입력");
+        assetInputPanel.add(label3);
 
         JTextField textField = new JTextField();
         assetInputPanel.add(textField);
@@ -242,14 +258,19 @@ public class AssetPanel extends JPanel {
         JLabel label1 = new JLabel("연결 통장");
         assetInputPanel.add(label1);
 
-        JTextField textField2 = new JTextField();
-        textField2.setText("");
-        assetInputPanel.add(textField2);
+        String[] list = new String[user.account().size()];
+
+        for (int i = 0; i < user.account().size(); i += 1) {
+            list[i] = user.account().get(i).name();
+        }
+
+        JComboBox comboBox = new JComboBox(list);
+        assetInputPanel.add(comboBox);
 
         JButton saveButton = new JButton("저장");
         saveButton.addActionListener(event -> {
             String cardName = textField1.getText();
-            String accountName = textField2.getText();
+            String accountName = (String) comboBox.getSelectedItem();
 
             user.addCard(new Card(cardName, accountName));
 

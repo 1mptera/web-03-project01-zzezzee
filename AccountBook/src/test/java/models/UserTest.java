@@ -88,11 +88,5 @@ class UserTest {
 
         assertEquals(10000, user.account().get(0).amount());
         assertEquals(18000, user.account().get(1).amount());
-
-    }
-
-    @Test
-    void editAsset() {
-
     }
 }

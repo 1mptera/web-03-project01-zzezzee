@@ -94,8 +94,6 @@ public class InputPanel extends JPanel {
         }
         JComboBox comboBox1 = new JComboBox(payments);
 
-//        JTextField textField3 = new JTextField(10);
-
         JLabel label4 = new JLabel("금액 : ");
         label4.setHorizontalAlignment(JLabel.RIGHT);
         label4.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
@@ -124,7 +122,6 @@ public class InputPanel extends JPanel {
             ));
 
             textField1.setText("");
-//            textField3.setText("");
             textField4.setText("");
             textField5.setText("");
 
