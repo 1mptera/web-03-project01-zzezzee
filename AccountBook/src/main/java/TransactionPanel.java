@@ -51,6 +51,8 @@ public class TransactionPanel extends JPanel {
 
         JPanel transactionPanel = new JPanel();
         transactionPanel.setLayout(new GridLayout(0, 7));
+        transactionPanel.setBackground(new Color(245, 255, 250));
+
 
         JLabel label1 = new JLabel("날짜");
         label1.setHorizontalAlignment(JLabel.CENTER);

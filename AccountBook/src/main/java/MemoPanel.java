@@ -39,6 +39,7 @@ public class MemoPanel extends JPanel {
 
         JPanel memoPanel = new JPanel();
         memoPanel.setLayout(new GridLayout(0, 3));
+        memoPanel.setBackground(new Color(245, 255, 250));
 
         JTextField textField1 = new JTextField();
         memoPanel.add(textField1);
