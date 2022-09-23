@@ -1,5 +1,7 @@
+import files.AccountFile;
 import files.CashFile;
 import files.TransactionFile;
+import models.Account;
 import models.TransactionManager;
 import models.User;
 
@@ -20,6 +22,7 @@ public class AccountBook {
     private TransactionManager transactionManager;
     private TransactionFile transactionFile;
     private CashFile cashFile;
+    private AccountFile accountFile;
 
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -46,6 +49,10 @@ public class AccountBook {
         File file2 = new File("Cash.csv");
         cashFile = new CashFile(user);
         cashFile.initFile(file2);
+
+        File file3 = new File("Account.csv");
+        accountFile = new AccountFile(user);
+        accountFile.initFile(file3);
     }
 
     private void initFrame() {
@@ -86,7 +93,7 @@ public class AccountBook {
     private JButton createInputButton() {
         JButton inputButton = new JButton("입력");
         inputButton.addActionListener(event -> {
-            InputPanel inputPanel = new InputPanel(user, transactionManager, transactionFile, cashFile);
+            InputPanel inputPanel = new InputPanel(user, transactionManager, transactionFile, cashFile, accountFile);
             updateContentPanel(inputPanel);
         });
         inputButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -97,7 +104,7 @@ public class AccountBook {
     private JButton createTransactionButton() {
         JButton transactionButton = new JButton("내역");
         transactionButton.addActionListener(event -> {
-            TransactionPanel transactionPanel = new TransactionPanel(transactionManager, transactionFile, cashFile);
+            TransactionPanel transactionPanel = new TransactionPanel(transactionManager, transactionFile, cashFile, accountFile);
             updateContentPanel(transactionPanel);
         });
         transactionButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -108,7 +115,7 @@ public class AccountBook {
     private JButton createAssetButton() {
         JButton AssetButton = new JButton("자산");
         AssetButton.addActionListener(event -> {
-            AssetPanel assetPanel = new AssetPanel(user, cashFile);
+            AssetPanel assetPanel = new AssetPanel(user, cashFile, accountFile);
             updateContentPanel(assetPanel);
         });
         AssetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

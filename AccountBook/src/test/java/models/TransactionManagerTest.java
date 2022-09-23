@@ -8,7 +8,9 @@ class TransactionManagerTest {
 
     @Test
     void addTransaction() {
-        TransactionManager transactionManager = new TransactionManager();
+        User user = new User();
+
+        TransactionManager transactionManager = new TransactionManager(user);
 
         transactionManager.addTransaction(new Transaction("", "", "", 0, ""));
 
@@ -18,7 +20,7 @@ class TransactionManagerTest {
     @Test
     void transferTransaction() {
         User user = new User();
-        TransactionManager transactionManager = new TransactionManager();
+        TransactionManager transactionManager = new TransactionManager(user);
         Ledger ledgerManager = new Ledger(user, transactionManager);
 
         ledgerManager.transferTransaction(new Transaction("", "", "", 0, ""));
@@ -28,8 +30,8 @@ class TransactionManagerTest {
 
     @Test
     void toptalReceive() {
-
-        TransactionManager transactionManager = new TransactionManager();
+        User user = new User();
+        TransactionManager transactionManager = new TransactionManager(user);
 
         transactionManager.addTransaction(new Transaction("", "수입", "", 1000, ""));
         transactionManager.addTransaction(new Transaction("", "수입", "", 5000, ""));
@@ -41,7 +43,10 @@ class TransactionManagerTest {
 
     @Test
     void totalSpend() {
-        TransactionManager transactionManager = new TransactionManager();
+        User user = new User();
+
+        TransactionManager transactionManager = new TransactionManager(user);
+
         transactionManager.addTransaction(new Transaction("", "지출", "", 1000, ""));
         transactionManager.addTransaction(new Transaction("", "지출", "", 5000, ""));
 
@@ -52,7 +57,9 @@ class TransactionManagerTest {
 
     @Test
     void editTransaction() {
-        TransactionManager transactionManager = new TransactionManager();
+        User user = new User();
+
+        TransactionManager transactionManager = new TransactionManager(user);
 
         Transaction transaction = new Transaction("09-22", "수입", "재원통장", 10000, "용돈");
 
