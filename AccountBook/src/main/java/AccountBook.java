@@ -99,6 +99,7 @@ public class AccountBook {
         JPanel panel = new JPanel();
         panel.setBounds(0, 370, 600, 100);
         panel.setLayout(new GridLayout(1, 0));
+        panel.setBackground(Color.white);
 
         panel.add(createInputButton());
         panel.add(createTransactionButton());
