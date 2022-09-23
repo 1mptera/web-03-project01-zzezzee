@@ -1,4 +1,5 @@
 import files.AccountFile;
+import files.CardFile;
 import files.CashFile;
 import files.TransactionFile;
 import models.Account;
@@ -23,6 +24,7 @@ public class AccountBook {
     private TransactionFile transactionFile;
     private CashFile cashFile;
     private AccountFile accountFile;
+    private CardFile cardFile;
 
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -53,6 +55,10 @@ public class AccountBook {
         File file3 = new File("Account.csv");
         accountFile = new AccountFile(user);
         accountFile.initFile(file3);
+
+        File file4 = new File("Card.csv");
+        cardFile = new CardFile(user);
+        cardFile.initFile(file4);
     }
 
     private void initFrame() {
@@ -115,7 +121,7 @@ public class AccountBook {
     private JButton createAssetButton() {
         JButton AssetButton = new JButton("자산");
         AssetButton.addActionListener(event -> {
-            AssetPanel assetPanel = new AssetPanel(user, cashFile, accountFile);
+            AssetPanel assetPanel = new AssetPanel(user, cashFile, accountFile, cardFile);
             updateContentPanel(assetPanel);
         });
         AssetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));

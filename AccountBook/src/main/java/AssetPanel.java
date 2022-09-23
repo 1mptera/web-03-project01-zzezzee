@@ -1,4 +1,5 @@
 import files.AccountFile;
+import files.CardFile;
 import files.CashFile;
 import models.Account;
 import models.Card;
@@ -21,12 +22,14 @@ public class AssetPanel extends JPanel {
     private User user;
     private CashFile cashFile;
     private AccountFile accountFile;
+    private CardFile cardFile;
 
 
-    public AssetPanel(User user, CashFile cashFile, AccountFile accountFile) {
+    public AssetPanel(User user, CashFile cashFile, AccountFile accountFile, CardFile cardFile) {
         this.user = user;
         this.cashFile = cashFile;
         this.accountFile = accountFile;
+        this.cardFile = cardFile;
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -101,6 +104,12 @@ public class AssetPanel extends JPanel {
             JButton button = new JButton("x");
             button.addActionListener( event -> {
                 user.card().remove(card);
+
+                try {
+                    cardFile.updateFile(new File("Card.csv"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 updateContentPanel();
             });
@@ -200,7 +209,6 @@ public class AssetPanel extends JPanel {
 
             user.addAccount(new Account(name, amount));
 
-
             try {
                 cashFile.updateFile(new File("Cash.csv"));
                 accountFile.updateFile(new File("Account.csv"));
@@ -241,6 +249,12 @@ public class AssetPanel extends JPanel {
             String accountName = textField2.getText();
 
             user.addCard(new Card(cardName, accountName));
+
+            try {
+                cardFile.updateFile(new File("Card.csv"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
             updateContentPanel();
         });
