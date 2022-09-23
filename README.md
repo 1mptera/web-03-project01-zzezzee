@@ -9,9 +9,14 @@
 
 ### 화면 및 기능
 
+#### [화면 및 기능 보러가기](https://github.com/1mptera/web-03-project01-zzezzee/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%99%94%EB%A9%B4-%EB%B0%8F-%EA%B8%B0%EB%8A%A5)
 
-#### [화면 및 기능 보러가기]()
+## 📺 실행 영상
 
+## 🗓 작업 기간
+- 2022.09.19 ~ 2022.09.23
 
-## 실행영상
-
+## 🏳️ 기술 스택
+- Java
+- Swing
+- JUnit5
