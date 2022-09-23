@@ -7,7 +7,7 @@
 
 수입내역과 지출내역, 자산관리를 통해 계획적인 소비를 해보자!
 
-### 화면 및 기능
+## 화면 및 기능
 
 #### [화면 및 기능 보러가기](https://github.com/1mptera/web-03-project01-zzezzee/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%99%94%EB%A9%B4-%EB%B0%8F-%EA%B8%B0%EB%8A%A5)
 
