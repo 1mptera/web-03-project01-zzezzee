@@ -68,4 +68,41 @@ public class User {
             }
         }
     }
+
+    public void removeTransaction(Transaction transaction) {
+        String type = transaction.type();
+        String payment = transaction.payment();
+        int amount = transaction.amount();
+
+        if(type.equals("수입") && payment.equals("현금")){
+            spendCash(amount);
+        }
+
+        if(type.equals("지출") && payment.equals("현금")){
+            receiveCash(amount);
+        }
+
+        if (!payment.equals("현금")) {
+            reflectRemoveTransaction(type, payment, amount);
+        }
+    }
+
+    private void reflectRemoveTransaction(String type, String payment, int amount) {
+        for (Card card : cards) {
+            if (card.name().equals(payment)) {
+                reflectTransaction(type, card.linkedAccount(), amount);
+                return;
+            }
+        }
+        for (Account account : accounts) {
+            if (account.name().equals(payment)) {
+                if (type.equals("수입")) {
+                    account.spend(amount);
+                }
+                if (type.equals("지출")) {
+                    account.receive(amount);
+                }
+            }
+        }
+    }
 }

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.io.File;
@@ -36,7 +37,7 @@ public class InputPanel extends JPanel {
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
-        setBackground(Color.ORANGE);
+        setBackground(new Color(255, 240, 250));
         setLayout(null);
 
 
@@ -46,9 +47,9 @@ public class InputPanel extends JPanel {
     private void initContentPanel() {
         contentPanel = new JPanel();
         contentPanel.setLayout(new GridLayout(0,2));
-        contentPanel.setBounds(0, 0, 600, 380);
+        contentPanel.setBounds(200, 0, 400, 370);
 
-        contentPanel.setBackground(Color.PINK);
+        contentPanel.setBackground(new Color(245, 255, 250));
 
         initButtons();
 
@@ -58,24 +59,27 @@ public class InputPanel extends JPanel {
     private void initButtons() {
         JLabel label1 = new JLabel("날짜 : ");
         label1.setHorizontalAlignment(JLabel.RIGHT);
+        label1.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         JTextField textField1 = new JTextField(10);
 
         JLabel label2 = new JLabel("수입 or 지출 : ");
         label2.setHorizontalAlignment(JLabel.RIGHT);
-
+        label2.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         JTextField textField2 = new JTextField(10);
 
         JLabel label3 = new JLabel("결제수단 : ");
         label3.setHorizontalAlignment(JLabel.RIGHT);
-
+        label3.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         JTextField textField3 = new JTextField(10);
 
         JLabel label4 = new JLabel("금액 : ");
         label4.setHorizontalAlignment(JLabel.RIGHT);
+        label4.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         JTextField textField4 = new JTextField(10);
 
-        JLabel label5 = new JLabel("메모");
+        JLabel label5 = new JLabel("메모 : ");
         label5.setHorizontalAlignment(JLabel.RIGHT);
+        label5.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         JTextField textField5 = new JTextField(10);
 
         JLabel label6 = new JLabel("");

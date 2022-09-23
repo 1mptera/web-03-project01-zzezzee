@@ -3,6 +3,7 @@ import files.CashFile;
 import files.TransactionFile;
 import models.Transaction;
 import models.TransactionManager;
+import models.User;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,13 +19,15 @@ import java.io.IOException;
 
 public class TransactionPanel extends JPanel {
     private JPanel contentPanel;
+    private User user;
     private TransactionManager transactionManager;
     private TransactionFile transactionFile;
     private CashFile cashFile;
     private AccountFile accountFile;
     private JPanel statusPanel;
 
-    public TransactionPanel(TransactionManager transactionManager, TransactionFile transactionFile, CashFile cashFile, AccountFile accountFile) {
+    public TransactionPanel(User user, TransactionManager transactionManager, TransactionFile transactionFile, CashFile cashFile, AccountFile accountFile) {
+        this.user = user;
         this.transactionManager = transactionManager;
         this.transactionFile = transactionFile;
         this.cashFile = cashFile;
@@ -44,10 +47,9 @@ public class TransactionPanel extends JPanel {
         contentPanel.setLayout(new BorderLayout());
         contentPanel.setBounds(0, 0, 600, 330);
 
-        contentPanel.setBackground(Color.PINK);
+        contentPanel.setBackground(new Color(245, 255, 250));
 
         JPanel transactionPanel = new JPanel();
-        transactionPanel.setBackground(Color.PINK);
         transactionPanel.setLayout(new GridLayout(0, 7));
 
         JLabel label1 = new JLabel("날짜");
@@ -125,7 +127,7 @@ public class TransactionPanel extends JPanel {
 
             JButton button2 = new JButton("X");
             button2.addActionListener( event -> {
-//                user.removeTransaction
+                user.removeTransaction(transaction);
                 transactionManager.transactions().remove(transaction);
 
                 updatePanel();

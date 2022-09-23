@@ -55,7 +55,7 @@ public class AssetPanel extends JPanel {
 
     private void initContentPanel() {
         contentPanel = new JPanel();
-        contentPanel.setBackground(Color.PINK);
+        contentPanel.setBackground(new Color(245, 255, 250));
         contentPanel.setBounds(0, 50, 600, 420);
         contentPanel.setLayout(null);
 
@@ -64,8 +64,8 @@ public class AssetPanel extends JPanel {
 
     private void initListPanel1() {
         JPanel listPanel1 = new JPanel();
-        listPanel1.setBounds(0, 150, 400, 130);
-        listPanel1.setBackground(Color.ORANGE);
+        listPanel1.setBounds(200, 150, 200, 130);
+        listPanel1.setBackground(new Color(245, 255, 250));
         listPanel1.setLayout(new GridLayout(0, 2));
 
         for (Account account : user.account()){
@@ -94,7 +94,7 @@ public class AssetPanel extends JPanel {
     private void initListPanel2() {
         JPanel listPanel2 = new JPanel();
         listPanel2.setBounds(400, 150, 200, 130);
-        listPanel2.setBackground(Color.ORANGE);
+        listPanel2.setBackground(new Color(245, 255, 250));
         listPanel2.setLayout(new GridLayout(0, 2));
 
         for (Card card : user.card()){
@@ -155,7 +155,7 @@ public class AssetPanel extends JPanel {
     private void initCashPanel() {
         JPanel assetInputPanel = new JPanel();
         assetInputPanel.setBounds(0, 0, 200, 150);
-        assetInputPanel.setBackground(Color.ORANGE);
+        assetInputPanel.setBackground(new Color(245, 255, 250));
         assetInputPanel.setLayout(new GridLayout(0, 1));
 
         JLabel label = new JLabel("현금 입력");
@@ -185,7 +185,7 @@ public class AssetPanel extends JPanel {
     private void initBankBookPanel() {
         JPanel assetInputPanel = new JPanel();
         assetInputPanel.setBounds(200, 0, 200, 150);
-        assetInputPanel.setBackground(Color.ORANGE);
+        assetInputPanel.setBackground(new Color(245, 255, 250));
         assetInputPanel.setLayout(new GridLayout(0, 1));
 
         JLabel label = new JLabel("통장 이름");
@@ -226,7 +226,7 @@ public class AssetPanel extends JPanel {
     private void initCardPanel() {
         JPanel assetInputPanel = new JPanel();
         assetInputPanel.setBounds(400, 0, 200, 150);
-        assetInputPanel.setBackground(Color.ORANGE);
+        assetInputPanel.setBackground(new Color(245, 255, 250));
         assetInputPanel.setLayout(new GridLayout(0, 1));
 
         JLabel label = new JLabel("카드 이름");
@@ -266,7 +266,7 @@ public class AssetPanel extends JPanel {
     private void initButtons() {
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setBounds(0, 0, 600, 50);
-        buttonsPanel.setBackground(Color.ORANGE);
+        buttonsPanel.setBackground(new Color(245, 255, 250));
         buttonsPanel.setLayout(new GridLayout(1, 0));
 
         buttonsPanel.add(createCashButton());

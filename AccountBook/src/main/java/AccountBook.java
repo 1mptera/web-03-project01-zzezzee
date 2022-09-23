@@ -77,16 +77,16 @@ public class AccountBook {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
 
-        initConcentPanel();
+        initContentPanel();
         initButtonsPanel();
 
-        TransactionPanel transactionPanel = new TransactionPanel(transactionManager, transactionFile, cashFile, accountFile);
+        TransactionPanel transactionPanel = new TransactionPanel(user, transactionManager, transactionFile, cashFile, accountFile);
         updateContentPanel(transactionPanel);
 
         frame.setVisible(true);
     }
 
-    private void initConcentPanel() {
+    private void initContentPanel() {
         contentPanel = new JPanel();
         contentPanel.setBounds(0, 0, 600, 370);
         contentPanel.setLayout(new GridLayout(1, 0));
@@ -122,7 +122,7 @@ public class AccountBook {
     private JButton createTransactionButton() {
         JButton transactionButton = new JButton("내역");
         transactionButton.addActionListener(event -> {
-            TransactionPanel transactionPanel = new TransactionPanel(transactionManager, transactionFile, cashFile, accountFile);
+            TransactionPanel transactionPanel = new TransactionPanel(user, transactionManager, transactionFile, cashFile, accountFile);
             updateContentPanel(transactionPanel);
         });
         transactionButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
