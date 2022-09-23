@@ -1,7 +1,9 @@
 import files.AccountFile;
 import files.CardFile;
 import files.CashFile;
+import files.MemoFile;
 import files.TransactionFile;
+import models.Memo;
 import models.MemoManager;
 import models.TransactionManager;
 import models.User;
@@ -26,6 +28,7 @@ public class AccountBook {
     private AccountFile accountFile;
     private CardFile cardFile;
     private MemoManager memoManager;
+    private MemoFile memoFile;
 
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -61,6 +64,10 @@ public class AccountBook {
         File file4 = new File("Card.csv");
         cardFile = new CardFile(user);
         cardFile.initFile(file4);
+
+        File file5 = new File("Memo.csv");
+        memoFile = new MemoFile(memoManager);
+        memoFile.initFile(file5);
     }
 
     private void initFrame() {
@@ -137,7 +144,7 @@ public class AccountBook {
     private JButton createMemoButton() {
         JButton memoButton = new JButton("메모");
         memoButton.addActionListener(event -> {
-            MemoPanel menuPanel = new MemoPanel(memoManager);
+            MemoPanel menuPanel = new MemoPanel(memoManager, memoFile);
             updateContentPanel(menuPanel);
         });
 

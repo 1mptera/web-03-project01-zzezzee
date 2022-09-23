@@ -1,8 +1,8 @@
 package files;
 
 import models.Account;
-import models.Transaction;
-import models.User;
+import models.Memo;
+import models.MemoManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,12 +10,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class AccountFile {
+public class MemoFile {
+    private MemoManager memoManager;
 
-    private User user;
-
-    public AccountFile(User user) {
-        this.user = user;
+    public MemoFile(MemoManager memoManager) {
+        this.memoManager = memoManager;
     }
 
     public void initFile(File file) throws FileNotFoundException {
@@ -23,20 +22,16 @@ public class AccountFile {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            String[] words = line.split(",");
 
-            String accountName = words[0];
-            int amount = Integer.parseInt(words[1]);
-
-            user.addAccount(new Account(accountName, amount));
+            memoManager.add(new Memo(line));
         }
     }
 
     public void updateFile(File file) throws IOException {
         FileWriter fileWriter = new FileWriter(file);
 
-        for(Account account : user.account()){
-            fileWriter.write(account.name() + "," + account.amount() + "\n");
+        for(Memo memo : memoManager.getMemos()){
+            fileWriter.write(memo.memo() + "\n");
         }
 
         fileWriter.close();
