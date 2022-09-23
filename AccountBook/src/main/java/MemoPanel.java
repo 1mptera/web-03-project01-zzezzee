@@ -24,7 +24,7 @@ public class MemoPanel extends JPanel {
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
-        setBackground(Color.orange);
+        setBackground(new Color(245, 255, 250));
         setLayout(null);
 
         initContentPanel();
@@ -35,10 +35,9 @@ public class MemoPanel extends JPanel {
         contentPanel.setLayout(new BorderLayout());
         contentPanel.setBounds(0, 0, 600, 420);
 
-        contentPanel.setBackground(Color.PINK);
+        contentPanel.setBackground(new Color(245, 255, 250));
 
         JPanel memoPanel = new JPanel();
-        memoPanel.setBackground(Color.PINK);
         memoPanel.setLayout(new GridLayout(0, 3));
 
         JTextField textField1 = new JTextField();
