@@ -119,6 +119,7 @@ public class TransactionPanel extends JPanel {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
             });
             transactionPanel.add(button1);
 

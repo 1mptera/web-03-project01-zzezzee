@@ -2,7 +2,7 @@ import files.AccountFile;
 import files.CardFile;
 import files.CashFile;
 import files.TransactionFile;
-import models.Account;
+import models.MemoManager;
 import models.TransactionManager;
 import models.User;
 
@@ -25,6 +25,7 @@ public class AccountBook {
     private CashFile cashFile;
     private AccountFile accountFile;
     private CardFile cardFile;
+    private MemoManager memoManager;
 
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -41,6 +42,7 @@ public class AccountBook {
     private void initObject() {
         user = new User();
         transactionManager = new TransactionManager(user);
+        memoManager = new MemoManager();
     }
 
     private void initFile() throws FileNotFoundException {
@@ -70,6 +72,9 @@ public class AccountBook {
 
         initConcentPanel();
         initButtonsPanel();
+
+        TransactionPanel transactionPanel = new TransactionPanel(transactionManager, transactionFile, cashFile, accountFile);
+        updateContentPanel(transactionPanel);
 
         frame.setVisible(true);
     }
@@ -132,7 +137,7 @@ public class AccountBook {
     private JButton createMemoButton() {
         JButton memoButton = new JButton("메모");
         memoButton.addActionListener(event -> {
-            MenuPanel menuPanel = new MenuPanel();
+            MemoPanel menuPanel = new MemoPanel(memoManager);
             updateContentPanel(menuPanel);
         });
 
