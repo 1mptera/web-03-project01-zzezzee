@@ -1,3 +1,4 @@
+import files.MemoFile;
 import models.Memo;
 import models.MemoManager;
 
@@ -9,13 +10,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.io.File;
+import java.io.IOException;
 
 public class MemoPanel extends JPanel {
     private JPanel contentPanel;
     private MemoManager memoManager;
+    private MemoFile memoFile;
 
-    public MemoPanel(MemoManager memoManager) {
+    public MemoPanel(MemoManager memoManager, MemoFile memoFile) {
         this.memoManager = memoManager;
+        this.memoFile = memoFile;
 
         setBackground(SystemColor.activeCaption);
         setBounds(0, 0, 600, 420);
@@ -45,6 +50,12 @@ public class MemoPanel extends JPanel {
 
             memoManager.add(new Memo(memo));
 
+            try {
+                memoFile.updateFile(new File("Memo.csv"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
             updatePanel();
         });
         memoPanel.add(button);
@@ -63,6 +74,12 @@ public class MemoPanel extends JPanel {
 
                 memoManager.editMemo(memo, content);
 
+                try {
+                    memoFile.updateFile(new File("Memo.csv"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
                 updatePanel();
             });
             memoPanel.add(button1);
@@ -70,6 +87,12 @@ public class MemoPanel extends JPanel {
             JButton button2 = new JButton("X");
             button2.addActionListener(event -> {
                 memoManager.getMemos().remove(memo);
+
+                try {
+                    memoFile.updateFile(new File("Memo.csv"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
                 updatePanel();
             });

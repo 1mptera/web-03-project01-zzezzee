@@ -13,6 +13,7 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountFileTest {
+
     @Test
     void initFile() throws IOException {
         User user = new User();
