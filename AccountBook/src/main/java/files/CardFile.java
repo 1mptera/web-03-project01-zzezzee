@@ -35,7 +35,7 @@ public class CardFile {
         FileWriter fileWriter = new FileWriter(file);
 
         for(Card card : user.card()){
-            fileWriter.write(card.name() + "," + card.linkedAccount());
+            fileWriter.write(card.name() + "," + card.linkedAccount() + "\n");
         }
 
         fileWriter.close();

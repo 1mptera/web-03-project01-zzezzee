@@ -41,6 +41,10 @@ public class MemoPanel extends JPanel {
         memoPanel.setLayout(new GridLayout(0, 3));
         memoPanel.setBackground(new Color(245, 255, 250));
 
+        JLabel label = new JLabel("메모 : ");
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        memoPanel.add(label);
+
         JTextField textField1 = new JTextField();
         memoPanel.add(textField1);
 
@@ -59,9 +63,6 @@ public class MemoPanel extends JPanel {
             updatePanel();
         });
         memoPanel.add(button);
-
-        JLabel label = new JLabel("");
-        memoPanel.add(label);
 
         for (Memo memo : memoManager.getMemos()) {
             JTextField textField2 = new JTextField();
@@ -98,7 +99,6 @@ public class MemoPanel extends JPanel {
             });
             memoPanel.add(button2);
         }
-
 
         contentPanel.add(memoPanel, BorderLayout.PAGE_START);
 
