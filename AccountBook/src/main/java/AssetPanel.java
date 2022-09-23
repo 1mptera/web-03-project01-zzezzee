@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class AssetPanel extends JPanel {
     private JPanel contentPanel;
@@ -124,9 +125,11 @@ public class AssetPanel extends JPanel {
         statusPanel.setBounds(0, 280, 600, 40);
         statusPanel.setLayout(new FlowLayout());
 
+        DecimalFormat df = new DecimalFormat("###,###");
+
         statusPanel.add(new JLabel("총 자산: "));
         JTextField totalAsset = new JTextField(10);
-        totalAsset.setText(Integer.toString(user.cash() + user.totalAccountAmount()));
+        totalAsset.setText(df.format(user.cash() + user.totalAccountAmount()));
         totalAsset.setHorizontalAlignment(JTextField.RIGHT);
 
         totalAsset.setEditable(false);
@@ -134,7 +137,7 @@ public class AssetPanel extends JPanel {
 
         statusPanel.add(new JLabel("통장: "));
         JTextField bankBookAsset = new JTextField(10);
-        bankBookAsset.setText(Integer.toString(user.totalAccountAmount()));
+        bankBookAsset.setText(df.format(user.totalAccountAmount()));
         bankBookAsset.setHorizontalAlignment(JTextField.RIGHT);
 
 
@@ -143,7 +146,7 @@ public class AssetPanel extends JPanel {
 
         statusPanel.add(new JLabel("현금: "));
         JTextField cashAsset = new JTextField(10);
-        cashAsset.setText(Integer.toString(user.cash()));
+        cashAsset.setText(df.format(user.cash()));
         cashAsset.setHorizontalAlignment(JTextField.RIGHT);
 
         totalAsset.setEditable(false);

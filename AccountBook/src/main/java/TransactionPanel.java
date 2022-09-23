@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class TransactionPanel extends JPanel {
     private JPanel contentPanel;
@@ -51,6 +52,8 @@ public class TransactionPanel extends JPanel {
 
         JPanel transactionPanel = new JPanel();
         transactionPanel.setLayout(new GridLayout(0, 7));
+        transactionPanel.setBackground(new Color(245, 255, 250));
+
 
         JLabel label1 = new JLabel("날짜");
         label1.setHorizontalAlignment(JLabel.CENTER);
@@ -157,9 +160,11 @@ public class TransactionPanel extends JPanel {
         JLabel label1 = new JLabel("지출 합계: ");
         statusPanel.add(label1);
 
+        DecimalFormat df = new DecimalFormat("###,###");
+
         JTextField textField1 = new JTextField(10);
         textField1.setEditable(false);
-        textField1.setText(Integer.toString(transactionManager.totalSpend()));
+        textField1.setText(df.format(transactionManager.totalSpend()));
         statusPanel.add(textField1);
 
         JLabel label2 = new JLabel(" 수입 합계: ");
@@ -167,7 +172,7 @@ public class TransactionPanel extends JPanel {
 
         JTextField textField2 = new JTextField(10);
         textField2.setEditable(false);
-        textField2.setText(Integer.toString(transactionManager.totalReceive()));
+        textField2.setText(df.format(transactionManager.totalReceive()));
         statusPanel.add(textField2);
 
         JLabel label3 = new JLabel(" 금액 합계: ");
@@ -175,7 +180,7 @@ public class TransactionPanel extends JPanel {
 
         JTextField textField3 = new JTextField(10);
         textField3.setEditable(false);
-        textField3.setText(Integer.toString(transactionManager.totalSpend() + transactionManager.totalReceive()));
+        textField3.setText(df.format(transactionManager.totalSpend() + transactionManager.totalReceive()));
         statusPanel.add(textField3);
 
         add(statusPanel);
